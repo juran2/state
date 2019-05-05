@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .item{
+            
+        }
+        .item_wrap{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <div class="iconfont icon-add">item1</div>
+            <div class="item_wrap">item1item1item1item1item1item1</div>
+        </li>
+    </ul>
+    <script>
+        let items=document.querySelectorAll('.item'),itemWraps=document.querySelectorAll('.item_wrap');
+        items.forEach((ele,index)=>{
+            ele.dispBol='false';　　　　//创建一个属性来记录当前面板是否展开   true 展开 false折叠 
+            items[index].onclick=((e)=>{
+                let thisDispBol=e.toElement.dispBol; //先保存thisDisBol。接下来要重置
+                itemsInit();
+                thisDispBol=='false' ? e.toElement.dispBol='true' : e.toElement.dispBol='false';
+                repaint();
+            });
+        })
+        function repaint(){
+            items.forEach((ele,index)=>{
+                ele.dispBol=='true' ? itemWraps[index].style.display='block' : itemWraps[index].style.display='none';
+            })
+        }
+        function itemsInit(){
+            items.forEach((ele,index)=>{
+                ele.dispBol='false';
+            })
+        }
+    </script>
+</body>
+</html>
